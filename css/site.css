@@ -1,5 +1,5 @@
 *{
-	font-family: 'Open Sans', serif;
+	font-family: 'Roboto Condensed', sans-serif;
 	outline: none !important;
 	margin: 0;
 	padding: 0;
@@ -14,53 +14,60 @@ hr {
     border-top: 1px solid rgba(0,0,0,0.3);
 }
 body{
-	padding: 20px;
-	background-color: #DFEAE4;
+	padding: 0px;
+	/* background-color: #DFEAE4; */
 }
 
-.card{
-	display: inline-block;
-	width: 300px;
-	text-align: center;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
-	margin: 20px 20px 0 0;
-	background-color: #fff;
-}
-
-.card > .title{
+.inputarea{
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	display: inline-block;
 	width: 100%;
-	font-size: 60px;
-	font-weight: 700;
-	padding: 20px 0;
+	height: 50px;
+	box-shadow: 0 -5px 50px rgba(0,0,0,0.2);
 }
-
-.card > .content{
+.inputarea input[type=text]{
 	display: inline-block;
-	width: 100%;
-	padding: 20px 0;
-}
-
-.card > .footer{
-	display: inline-block;
-	width: 100%;
-	border-top: 1px solid rgba(0,0,0,0.1);
-	padding: 20px 0;
-}
-.card > .footer:hover{}
-.card > .footer a{
-	text-decoration: none;
+	width: 80%;
+	height: 50px;
+	float: left;
+	border: none;
+	padding: 10px;
+	background-color: #475FA3;
 	color: #fff;
+	font-size: 15px;
 }
-.background-red{	
-	background-color: #F64744;
-	color: rgba(255,255,255,0.9);
+.inputarea button{
+	display: inline-block;
+	width: 20%;
+	height: 50px;
+	float: right;
+	border: none;
+	background-color: #10a461;
+	color: #eee;
+	font-size: 30px;
 }
-.background-green{	
-	background-color: #10A461;
-	color: rgba(255,255,255,0.9);
+.inputarea button:hover{
+	background-color: #8BCA23;
+	color: #fff;
+	cursor: pointer;
 }
-.background-blue{	
-	background-color: #477BD1;
-	color: rgba(255,255,255,0.9);
+
+#messages{
+	display: inline-block;
+	width: 100%;
+	padding: 10px 50px;
+	list-style: none;
+}
+#messages li{
+	display: inline-block;
+	width: 100%;
+	padding: 10px;
+	background-color: #ddd;
+	border-radius: 6px;
+	margin-top: 10px;
+}
+#messages li:nth-child(even){
+	background-color: #eee;
 }
