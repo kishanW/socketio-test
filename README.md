@@ -4,7 +4,7 @@ This is just a simple project to get to know what Socket.io is.
 How to run this
 - Clone
 - type `npm install`
-- type `node index`
+- type `node index` or `node forms`
 - open up browser and go to `localhost:3000`
 
 More info about Socket.io:
