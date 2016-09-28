@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+      <title>Socket.IO chat</title>
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+      <link rel="stylesheet" href="css/site.css">
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+      <script>
+		var socket = io();
+            $(document).ready(function(){
+                  $("#m").focus();
+            });
+
+            $(document).on("click", "#loginInfo a", function(e){
+                  var userName = $('#userName').val();
+                  socket.emit('new user', userName);
+                  localStorage.setItem("userName", userName);
+                  $('#loginInfo input').val('');
+                  window.location.href = "http://localhost:3000/chat";
+            });
+
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+            });
+	  </script>
+</head>
+<body data-page="login">
+      <section id="loginInfo">
+            <input type="text" name="userName" id="userName" placeholder="Type an username to continue">
+            <a href="#">Let's go</a>
+      </section>
+</body>
+</html>

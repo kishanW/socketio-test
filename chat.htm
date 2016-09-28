@@ -9,13 +9,23 @@
       <script src="/socket.io/socket.io.js"></script>
       <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
       <script>
-		  var socket = io();
+            var userName = localStorage.userName;
+            if(userName === undefined)
+            {
+                  console.log(userName === undefined);
+                  window.location.href = "http://localhost:3000/";
+            }
+
+            var socket = io();
             $(document).ready(function(){
                   $("#m").focus();
             });
             $(document).on("submit", ".inputarea", function(e){
                   e.preventDefault();
-                  socket.emit('chat message', $('#m').val());
+                  socket.emit('chat message', {
+                        userName : userName,
+                        message: $('#m').val()
+                  });
                   $('#m').val('');
                   return false;
             });
