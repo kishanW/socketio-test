@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+      <title>Socket.IO Form</title>
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+      <!-- <link rel="stylesheet" href="css/site.css"> -->
+
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+      <script>
+            var userName = localStorage.userName;
+            if(userName === undefined)
+            {
+                  console.log(userName === undefined);
+                  window.location.href = "http://localhost:3000/";
+            }
+
+            var socket = io();
+            $(document).ready(function(){
+                  $("#one").focus();
+            });
+
+            $(document).on("change", "input", function(e){
+                  socket.emit('editing-field', {
+                        userName : userName,
+                        field: $(this).attr("name")
+                  });
+            });
+
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            socket.on('edit-notification', function(notification){
+                $('#messages').append($('<li>').text(notification.msg));
+            });
+	  </script>
+</head>
+<body>
+      <ul id="messages"></ul>
+      <form class="inputarea">
+            <label for="one">Name</label>
+            <input type="text" name="name" id="one">
+
+            <label for="two">Email</label>
+            <input type="text" name="email" id="two">            
+      </form>
+</body>
+</html>
