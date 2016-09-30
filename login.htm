@@ -18,7 +18,7 @@
                   socket.emit('new user', userName);
                   localStorage.setItem("userName", userName);
                   $('#loginInfo input').val('');
-                  window.location.href = "http://localhost:3000/chat";
+                  window.location.href = "/chat";
             });
 
             socket.on('chat message', function(msg){
