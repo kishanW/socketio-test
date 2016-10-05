@@ -6,18 +6,19 @@ var io = require('socket.io')(http);
 app.use("/css", express.static(__dirname + '/css'));
 app.users = [];
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/login.htm');
-});
-
-app.get('/form', function(req, res){
-  res.sendFile(__dirname + '/form.htm');
-});
-
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
 
+
+//routing
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/../index.htm');
+});
+
+
+
+//sockets
 io.on('connection', function(socket){
   console.log('a user connected');
 
