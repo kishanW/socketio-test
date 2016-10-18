@@ -4,7 +4,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.use("/css", express.static(__dirname + '/css'));
-app.users = [];
+app.use("/js", express.static(__dirname + '/js'));
+users = [];
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
@@ -22,16 +23,23 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   console.log('a user connected');
 
+  //disconnected
   socket.on('disconnect', function(){
     console.log('user disconnected');
-  }); 
-
-  socket.on('new user', function(userName){
-    app.users[app.users.length] = userName;
-    io.emit('chat message', userName + " joined. Now we have " + app.users.length + " onilne.");
   });
 
-  socket.on('editing-field', function(editMessage){
+  //new users
+  socket.on('new-user', function(userName){
+    users[users.length] = userName;
+    io.emit('new-user-notification', {
+      newuser: userName,
+      count: users.length
+    });
+
+    console.log(userName + " joined the page. We have total of " + users.length + " users in this page now.");
+  });
+
+  socket.on('field-edit', function(editMessage){
     var field = editMessage.field;
     var userName = editMessage.userName;
 

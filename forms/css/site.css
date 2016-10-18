@@ -3,6 +3,7 @@
 	outline: none !important;
 	margin: 0 !important;;
 	padding: 0;
+	color: #4B516F;
 	box-sizing: border-box;
 	-webkit-transition: all .2s ease-in-out;
        -o-transition: all .2s ease-in-out;
@@ -10,65 +11,76 @@
 }
 body{
 	padding: 0;
+	background-color: #f4f7f5;
 }
 
 hr {
 	border: none;
     border-top: 1px solid rgba(0,0,0,0.3);
 }
-
-form{
-	display: inline-block;
-	width: 100%;
-	padding: 10px;
-	border: 1px solid rgba(0,0,0,0.1);
-}
-
-form .form-section{
-	display: inline-block;
-	width: 100%;
-	padding: 20px 0;
-	border-bottom: 1px dotted rgba(0,0,0,0.2);
-}
-
-form .form-section:last-child{
-	border: none;
-	padding: 10px 0 0 0;
-}
-
 label{
 	display: inline-block;
 	width: 100%;
+	text-transform: uppercase;
+	text-align: left;
 }
-
 input[type=text],
+input[type=password],
 input[type=email]{
 	display: inline-block;
 	width: 100%;
-	float: left;
-	border: none;
 	padding: 10px;
-	background-color: rgba(0,0,0,0.05);
-	font-size: 15px;
+	border: 1px solid #eee;
 }
 
 input[type=text]:focus,
-input[type=email]:focus{	
-	background-color: #e6f7ed;
+input[type=password]:focus,
+input[type=email]:focus{
+	border-bottom-color: #67A4A6;
 }
 
 button,
 input[type=submit]{
 	display: inline-block;
-	padding: 10px 20px;
-	color: #fff;
-	font-weight: 700;
-	background-color: #34AA66;
+	margin-top: 20px;
+	padding:  10px 50px;
 	border: none;
+	background-color: #67A4A6;
+	font-weight: 700;
+	color: #eee;
+	text-transform: uppercase;
 }
-
 button:hover,
 input[type=submit]:hover{
-	/*box-shadow: 0 20px 50px rgba(0,0,0,0.5);*/
-	background-color: #31CAB2;
+	background-color: #56BD81;
+}
+
+/* 	login form
+*****************************************/
+body[data-authenticated=false]{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	padding-top: 100px;
+	margin-bottom: -100px;
+}
+body[data-authenticated=false] #login-form, 
+body #login-form{
+	display: inline-block;
+	margin: auto;
+	width: 500px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+	padding: 30px 20px;
+	background-color: #fff;
+}
+
+body[data-authenticated=false] .container-fluid{
+	display: none !important;
+}
+body[data-authenticated=true] #login-form{
+	display: none !important;
+}
+
+#login-form button{
+	float: right;
 }
