@@ -1,7 +1,7 @@
 *{
 	font-family: 'Roboto Condensed', sans-serif;
 	outline: none !important;
-	margin: 0 !important;;
+	margin: 0;
 	padding: 0;
 	color: #4B516F;
 	box-sizing: border-box;
@@ -21,6 +21,7 @@ hr {
 label{
 	display: inline-block;
 	width: 100%;
+	margin-top: 10px;
 	text-transform: uppercase;
 	text-align: left;
 }
@@ -58,16 +59,15 @@ input[type=submit]:hover{
 /* 	login form
 *****************************************/
 body[data-authenticated=false]{
-	display: inline-block;
+	display: block;
 	width: 100%;
-	text-align: center;
 	padding-top: 100px;
 	margin-bottom: -100px;
 }
 body[data-authenticated=false] #login-form, 
 body #login-form{
-	display: inline-block;
-	margin: auto;
+	display: block;
+	margin: auto !important;
 	width: 500px;
 	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 	padding: 30px 20px;
@@ -82,5 +82,5 @@ body[data-authenticated=true] #login-form{
 }
 
 #login-form button{
-	float: right;
+	width: 100%;	
 }

@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 
 //sockets
 io.on('connection', function(socket){
-  console.log('a user connected');
+  //console.log('a user connected');
 
   //disconnected
   socket.on('disconnect', function(){
@@ -30,13 +30,15 @@ io.on('connection', function(socket){
 
   //new users
   socket.on('new-user', function(userName){
+    console.log("\n regestering user: " + userName);
+
     users[users.length] = userName;
     io.emit('new-user-notification', {
-      newuser: userName,
+      newuser: socket.userName,
       count: users.length
     });
 
-    console.log(userName + " joined the page. We have total of " + users.length + " users in this page now.");
+    console.log("\n"+ userName + " joined the page. We have total of " + users.length + " users in this page now.");
   });
 
   socket.on('field-edit', function(editMessage){
