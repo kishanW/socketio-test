@@ -4,16 +4,6 @@ var storage = {};
 
 $(document).ready(function(){  
   window.body = $("body");
-  if(!window.body.data().authenticated)
-  {
-    $("#username").focus();
-  }
-
-  if(localStorage.userName)
-  {
-    storage = localStorage;
-  }
-  FA.UpdateUserAuthentication();
 });
 
 $(document).on("click", "#login-form button", function(){
@@ -48,6 +38,29 @@ socket.on('chat message', function(msg){
 
 socket.on('edit-notification', function(notification){
     $('#messages').append($('<li>').text(notification.msg));
+});
+
+socket.on("user-list-update", function(users){
+  var userlist = $("#userlist").html("");
+  for(var i = 0; i < users.length; i++)
+  {
+    var userItem = $("<li class='list-group-item'>" + users[i] + "</li>");
+    userlist.prepend(userItem);
+  }
+
+  console.log(users.length + " users online");
+
+  window.body.data().authenticated = users.length> 0;
+  if(!window.body.data().authenticated)
+  {
+    $("#username").focus();
+  }
+
+  else if(localStorage.userName)
+  {
+    storage = localStorage;
+  }
+  FA.UpdateUserAuthentication();
 });
 
 

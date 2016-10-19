@@ -21,12 +21,14 @@ app.get('/', function(req, res){
 
 //sockets
 io.on('connection', function(socket){
-  //console.log('a user connected');
+  //broadcast list on connection
+  BroadcastUserList();
 
   //disconnected
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+
 
   //new users
   socket.on('new-user', function(userName){
@@ -38,8 +40,14 @@ io.on('connection', function(socket){
       count: users.length
     });
 
+    BroadcastUserList();
+
     console.log("\n"+ userName + " joined the page. We have total of " + users.length + " users in this page now.");
   });
+
+
+
+
 
   socket.on('field-edit', function(editMessage){
     var field = editMessage.field;
@@ -51,5 +59,12 @@ io.on('connection', function(socket){
     };
     socket.broadcast.emit('edit-notification', notification);
   });
+
+
+
+  function BroadcastUserList(){
+    io.emit("user-list-update", users);
+  };
+
 
 });
