@@ -6,7 +6,7 @@ How to run this
 - `cd` to either `Forms` or `Chat`
 - type `npm install`
 - type `node index` or `node forms`
-- open up browser and go to https://localhost:3000
+- open up browser and go to http://localhost:3000
 
 More info about Socket.io:
 - http://socket.io/get-started/
