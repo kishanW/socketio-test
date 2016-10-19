@@ -2,80 +2,100 @@ var FA = {};
 var socket = io();
 var storage = {};
 
-$(document).ready(function(){  
-  window.body = $("body");
+/*    REGULAR EVENTS
+*******************************************************************************/
+$(document).ready(function(){
+      window.body = $("body");
+      $("#username").val("").focus();
 });
 
-$(document).on("click", "#login-form button", function(){
-
-  var isPersistentRequested = $("#rememberme").prop("checked");
-  if(isPersistentRequested === true)
-  {
-    storage = localStorage;
-  }
-  else
-  {
-    storage = socket;
-  }
-
-  storage.userName = $("#login-form #username").val();
-  
-  FA.UpdateUserAuthentication();
-  FA.AddNewUser();
+$(document).on("click", "#loginButton", function(){
+      FA.SetupStorage();
+      FA.AddNewUser();
+      FA.UpdateUserAuthentication();
 });
 
-/*$(document).on("change", "input", function(e){
-      socket.us
-      socket.emit('editing-field', {
-            userName : userName,
-            field: $(this).attr("name")
-      });
-});*/
+$(document).on("click", "#logoutButton", function(){
+      FA.RemoveUser();
+});
 
+
+/*    SOCKET EVENTS
+*******************************************************************************/
 socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+      $('#messages').append($('<li>').text(msg));
 });
 
 socket.on('edit-notification', function(notification){
-    $('#messages').append($('<li>').text(notification.msg));
+      $('#messages').append($('<li>').text(notification.msg));
 });
 
 socket.on("user-list-update", function(users){
-  var userlist = $("#userlist").html("");
-  for(var i = 0; i < users.length; i++)
-  {
-    var userItem = $("<li class='list-group-item'>" + users[i] + "</li>");
-    userlist.prepend(userItem);
-  }
-
-  console.log(users.length + " users online");
-
-  window.body.data().authenticated = users.length> 0;
-  if(!window.body.data().authenticated)
-  {
-    $("#username").focus();
-  }
-
-  else if(localStorage.userName)
-  {
-    storage = localStorage;
-  }
-  FA.UpdateUserAuthentication();
+      var userlist = $("#userlist").html("");
+      for(var i = 0; i < users.length; i++)
+      {
+            var userItem = $("<li class='list-group-item'>" + users[i] + "</li>");
+            userlist.prepend(userItem);
+      }
 });
 
-
-FA.UpdateUserAuthentication = function(){
-  var userName = storage.userName;
-  var isAuthenticated = (userName !== undefined) && (userName !== null) && (userName !== "null");
-  window.body.attr("data-authenticated", isAuthenticated);
+/*    UTILITY FUNCTIONS
+*******************************************************************************/
+FA.SetupStorage = function(){
+      var isPersistentRequested = $("#rememberme").prop("checked");
+      if(isPersistentRequested === true)
+      {
+            storage = localStorage;
+      }
+      else
+      {
+            storage = socket;
+            localStorage.removeItem("userName");
+      }
 };
 
+FA.UpdateUserAuthentication = function(){
+      var userName = storage.userName;
+      var isAuthenticated = (userName !== undefined) && (userName !== null) && (userName !== "null");
+      FA.ToggleLogoutScreen(isAuthenticated);
+};
+
+FA.ToggleLogoutScreen = function(action = false){
+      if(action !== undefined)
+      {
+            window.body.attr("data-authenticated", action);
+            if(action === false)
+            {
+                  $("#username").val("").focus();
+            }
+      }
+      else{
+            console.log("Toggle Logout Fails.");
+      }
+};
 
 FA.AddNewUser = function(){
-  if(!storage.userName)
-  {
-    return;
-  }
+      storage.userName = $("#login-form #username").val();
+      if(!storage.userName)
+      {
+            return;
+      }
+      socket.emit('new-user', storage.userName);
+};
 
-  socket.emit('new-user', storage.userName);
+FA.RemoveUser = function(){
+      socket.emit("remove-user", storage.userName);
+      if(storage.removeProp)
+      {
+            storage.removeProp("userName");
+      }
+      else if(storage.removeItem)
+      {
+            storage.removeItem("userName");
+      }
+      else if(storage.userName)
+      {
+            storage.userName = null;
+      }
+      FA.ToggleLogoutScreen(false);
 };

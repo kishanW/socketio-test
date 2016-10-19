@@ -40,6 +40,7 @@ input[type=email]:focus{
 	border-bottom-color: #67A4A6;
 }
 
+.button,
 button,
 input[type=submit]{
 	display: inline-block;
@@ -51,9 +52,12 @@ input[type=submit]{
 	color: #eee;
 	text-transform: uppercase;
 }
+.button:hover,
 button:hover,
 input[type=submit]:hover{
 	background-color: #56BD81;
+	text-decoration: none;
+	color: #fff;
 }
 
 /* 	login form
@@ -64,7 +68,7 @@ body[data-authenticated=false]{
 	padding-top: 100px;
 	margin-bottom: -100px;
 }
-body[data-authenticated=false] #login-form, 
+body[data-authenticated=false] #login-form,
 body #login-form{
 	display: block;
 	margin: auto !important;
@@ -82,5 +86,5 @@ body[data-authenticated=true] #login-form{
 }
 
 #login-form button{
-	width: 100%;	
+	width: 100%;
 }
