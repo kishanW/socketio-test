@@ -19,6 +19,13 @@ $(document).on("click", "#logoutButton", function(){
       FA.RemoveUser();
 });
 
+$(document).on("focus", "input[type=text]", function(){
+      FA.FieldFocusInNotification($(this));
+});
+
+$(document).on("blur", "input[type=text]", function(){
+      FA.FieldFocusOutNotification($(this));
+});
 
 /*    SOCKET EVENTS
 *******************************************************************************/
@@ -37,6 +44,11 @@ socket.on("user-list-update", function(users){
             var userItem = $("<li class='list-group-item'>" + users[i] + "</li>");
             userlist.prepend(userItem);
       }
+});
+
+socket.on("field-focus-notification", function(notification){
+      console.log(notification);
+      //TODO: create functionality to display this properly
 });
 
 /*    UTILITY FUNCTIONS
@@ -98,4 +110,18 @@ FA.RemoveUser = function(){
             storage.userName = null;
       }
       FA.ToggleLogoutScreen(false);
+};
+
+FA.FieldFocusInNotification = function(field){
+      socket.emit("field-focus-in", {
+            field: field.prop("name"),
+            username: storage.userName
+      });
+};
+
+FA.FieldFocusOutNotification = function(field){
+      socket.emit("field-focus-out", {
+            field: field.prop("name"),
+            username: storage.userName
+      });
 };

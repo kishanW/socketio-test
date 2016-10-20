@@ -67,7 +67,21 @@ io.on('connection', function(socket){
             socket.broadcast.emit('edit-notification', notification);
       });
 
+      socket.on("field-focus-in", function(data){
+            console.log(data.username  + " focus-in at " + data.field);
+            socket.broadcast.emit("field-update-notification", {
+                  event: "focus in",
+                  data: data
+            });
+      });
 
+      socket.on("field-focus-out", function(data){
+            console.log(data.username  + " focus-out at " + data.field);
+            socket.broadcast.emit("field-focus-notification", {
+                  event: "focus out",
+                  data: data
+            });
+      });
 
       function BroadcastUserList(){
             io.emit("user-list-update", users);
