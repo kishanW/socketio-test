@@ -6,8 +6,8 @@
 	color: #4B516F;
 	box-sizing: border-box;
 	-webkit-transition: all .2s ease-in-out;
-       -o-transition: all .2s ease-in-out;
-          transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 body{
 	padding: 0;
@@ -16,7 +16,7 @@ body{
 
 hr {
 	border: none;
-    border-top: 1px solid rgba(0,0,0,0.3);
+	border-top: 1px solid rgba(0,0,0,0.3);
 }
 label{
 	display: inline-block;

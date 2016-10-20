@@ -66,7 +66,7 @@ io.on('connection', function(socket){
             };
             socket.broadcast.emit('edit-notification', notification);
       });
-
+      
       socket.on("field-focus-in", function(data){
             console.log(data.username  + " focus-in at " + data.field);
             socket.broadcast.emit("field-update-notification", {
