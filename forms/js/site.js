@@ -27,6 +27,10 @@ $(document).on("blur", "input[type=text]", function(){
       FA.FieldFocusOutNotification($(this));
 });
 
+$(document).on("change", "input[type=text]", function(){
+      FA.FieldChangeNotification($(this));
+});
+
 /*    SOCKET EVENTS
 *******************************************************************************/
 socket.on('chat message', function(msg){
@@ -46,7 +50,7 @@ socket.on("user-list-update", function(users){
       }
 });
 
-socket.on("field-focus-notification", function(notification){
+socket.on("field-notification", function(notification){
       console.log(notification);
       //TODO: create functionality to display this properly
 });
@@ -121,6 +125,13 @@ FA.FieldFocusInNotification = function(field){
 
 FA.FieldFocusOutNotification = function(field){
       socket.emit("field-focus-out", {
+            field: field.prop("name"),
+            username: storage.userName
+      });
+};
+
+FA.FieldChangeNotification = function(field){
+      socket.emit("field-change", {
             field: field.prop("name"),
             username: storage.userName
       });
