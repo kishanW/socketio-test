@@ -51,8 +51,36 @@ socket.on("user-list-update", function(users){
 });
 
 socket.on("field-notification", function(notification){
-      console.log(notification);
-      //TODO: create functionality to display this properly
+      console.log(notification.data.username + " is " + notification.event + " at " + notification.data.field);
+
+      var field = $("[name="+ notification.data.field+"]");
+      var fieldUsers = field.parent().find(".field-users");
+
+      if(field && notification.event === "focus in")
+      {
+            field.addClass("edit-mode");
+            var newUser = $("<li data-user='" + notification.data.username + "'>" + notification.data.username + "</li>");
+            fieldUsers.prepend(newUser);
+      }
+      else if(field && notification.event === "change")
+      {
+            //we need to fix this
+            field.addClass("change");
+            field.prop("readonly", "");
+            var oldUser = fieldUsers.find("[data-user='" + notification.data.username + "']");
+            oldUser.slideUp(function(){
+                  $(this).remove();
+            });
+      }
+      else if(field && notification.event === "focus out")
+      {
+            field.removeClass("edit-mode").removeClass("change");
+            field.removeProp("readonly");
+            var oldUser = fieldUsers.find("[data-user='" + notification.data.username + "']");
+            oldUser.slideUp(function(){
+                  $(this).remove();
+            });
+      }
 });
 
 /*    UTILITY FUNCTIONS

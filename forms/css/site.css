@@ -88,3 +88,25 @@ body[data-authenticated=true] #login-form{
 #login-form button{
 	width: 100%;
 }
+
+ul.field-users{
+	display: inline-block;
+	list-style: none;
+}
+ul.field-users li{
+	display: inline-block;;
+	border-radius: 15px;
+	background-color: #5D9CEC;
+	color: #fff;
+	padding: 10px 20px;
+	margin-top: 5px;
+	text-align: center;
+}
+.edit-mode{
+	border: 1px solid #FFC107 !important;
+}
+.edit-mode.change,
+.change{
+	background-color:  #FFC107 !important;
+	cursor: not-allowed;
+}
