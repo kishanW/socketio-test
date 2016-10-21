@@ -14,12 +14,15 @@ $(document).ready(function(){
     FA.ToggleLogoutScreen(true);
     FA.AddNewUser();
     console.log("automatic log in initiated.");
+
+    $(".page-title").text("Hi " + storage.userName + ", this is your form.");
   }
 });
 
 $(document).on("click", "#loginButton", function(){
   FA.SetupStorage();
-  FA.AddNewUser();
+  storage.userName = $("#login-form #username").val();
+  FA.AddNewUser();  
   FA.UpdateUserAuthentication();
 });
 

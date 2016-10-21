@@ -33,6 +33,11 @@ io.on('connection', function(socket){
       //new users
       socket.on('new-user', function(userName){
             console.log("\n regestering user: " + userName);
+            var isExistingUser = users.indexOf(userName) !== -1;
+            if(isExistingUser)
+            {
+              return;
+            }
 
             users[users.length] = userName;
             io.emit('new-user-notification', {

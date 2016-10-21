@@ -1,86 +1,86 @@
 <!doctype html>
 <html>
 <head>
-      <title>Socket.IO Form</title>
+  <title>Socket.IO Form</title>
 
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/site.css">
 
-      <script src="/socket.io/socket.io.js"></script>
-      <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-      <script src="js/site.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="js/site.js"></script>
 </head>
 <body data-authenticated="false">
 
-      <div id="login-form">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Your Username">
+  <div id="login-form">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Your Username">
 
-            <label for="rememberme">Remember Me</label>
-            <input type="checkbox" name="rememberme" id="rememberme">
+    <label for="rememberme">Remember Me</label>
+    <input type="checkbox" name="rememberme" id="rememberme">
 
-            <button id="loginButton">Next</button>
+    <button id="loginButton">Next</button>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Actions</h1>
+            <a href="#" id="logoutButton" class="button">Log out</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <hr>
+            <h4>Active Users In This Page</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-group" id="userlist">
+
+            </ul>
+          </div>
+        </div>
       </div>
 
-
-      <div class="container-fluid">
-            <div class="row">
-                  <div class="col-lg-3">
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <h1>Active Users</h1>
-                              </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <ul class="list-group" id="userlist">
-
-                                    </ul>
-                              </div>
-                        </div>
-                  </div>
-                  <div class="col-lg-3">
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <h1>This is your form</h1>
-                              </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <form action="#">
-                                          <div class="form-group">
-                                                <label for="">One</label>
-                                                <input type="text" name="fieldOne">
-                                                <ul class="field-users"></ul>
-                                          </div>
-                                          <div class="form-group">
-                                                <label for="">Two</label>
-                                                <input type="text" name="fieldTwo">
-                                                <ul class="field-users"></ul>
-                                          </div>
-                                          <div class="form-group">
-                                                <label for="">Three</label>
-                                                <input type="text" name="fieldThree">
-                                                <ul class="field-users"></ul>
-                                          </div>
-                                          <div class="form-group">
-                                                <label for="">&nbsp;</label>
-                                                <button>Save</button>
-                                          </div>
-                                    </form>
-                              </div>
-                        </div>
-                  </div>
-                  <div class="col-lg-3">
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <h1>Actions</h1>
-                                    <a href="#" id="logoutButton" class="button">Log out</a>
-                              </div>
-                        </div>
-                  </div>
-            </div>
+      <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 id="page-title">This is your form</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <form action="#">
+              <div class="form-group">
+                <label for="">One</label>
+                <input type="text" name="fieldOne">
+                <ul class="field-users"></ul>
+              </div>
+              <div class="form-group">
+                <label for="">Two</label>
+                <input type="text" name="fieldTwo">
+                <ul class="field-users"></ul>
+              </div>
+              <div class="form-group">
+                <label for="">Three</label>
+                <input type="text" name="fieldThree">
+                <ul class="field-users"></ul>
+              </div>
+              <div class="form-group">
+                <label for="">&nbsp;</label>
+                <button>Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
 </body>
 </html>
