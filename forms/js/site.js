@@ -22,7 +22,7 @@ $(document).ready(function(){
 $(document).on("click", "#loginButton", function(){
   FA.SetupStorage();
   storage.userName = $("#login-form #username").val();
-  FA.AddNewUser();  
+  FA.AddNewUser();
   FA.UpdateUserAuthentication();
 });
 
@@ -38,7 +38,7 @@ $(document).on("blur", "input[type=text]", function(){
   FA.FieldFocusOutNotification($(this));
 });
 
-$(document).on("keypress", "input[type=text]", function(){
+$(document).on("keypress", "input[type=text]:not(#username)", function(){
   FA.FieldChangeNotification($(this));
 });
 
