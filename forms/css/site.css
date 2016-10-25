@@ -10,7 +10,7 @@
 	transition: all .2s ease-in-out;
 }
 body{
-	padding: 0;
+	padding: 10px;
 	background-color: #f4f7f5;
 }
 
@@ -31,13 +31,14 @@ input[type=email]{
 	display: inline-block;
 	width: 100%;
 	padding: 10px;
-	border: 1px solid #eee;
+	border: 1px solid #fff;
+	border-bottom-color: #eee;
 }
 
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=email]:focus{
-	border-bottom-color: #67A4A6;
+	border-bottom-color: #8BC34A;
 }
 
 .button,
@@ -47,7 +48,7 @@ input[type=submit]{
 	margin-top: 20px;
 	padding:  10px 50px;
 	border: none;
-	background-color: #67A4A6;
+	background-color: #4CAF50;
 	font-weight: 700;
 	color: #eee;
 	text-transform: uppercase;
@@ -55,7 +56,7 @@ input[type=submit]{
 .button:hover,
 button:hover,
 input[type=submit]:hover{
-	background-color: #56BD81;
+	background-color: #8BC34A;
 	text-decoration: none;
 	color: #fff;
 }
@@ -94,11 +95,10 @@ ul.field-users{
 	list-style: none;
 }
 ul.field-users li{
-	display: inline-block;;
-	border-radius: 15px;
-	background-color: #5D9CEC;
+	display: inline-block;
+	background-color: #8BC34A;
 	color: #fff;
-	padding: 10px 20px;
+	padding: 5px 20px;
 	margin-top: 5px;
 	text-align: center;
 }
@@ -109,4 +109,72 @@ ul.field-users li{
 .change{
 	background-color:  #FFC107 !important;
 	cursor: not-allowed;
+}
+
+/*	USER LIST
+**********************************/
+#userlist{
+	display: inline-block;
+	width: 100%;
+	list-style: none;
+}
+#userlist li{
+	padding: 10px;
+}
+#userlist li:not(:last-child){
+	border-bottom: 1px solid #eee;
+}
+
+#userlist li i{
+	margin: 0;
+	margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+	background-color: #8BC34A;
+	text-align: center;
+	font-size: 15px;
+	color: rgba(0, 0, 0, 0.3);
+}
+
+/*	CARDS
+*********************************/
+.card{
+	display: inline-block;
+	width: 100%;
+	min-height: 300px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	padding: 0;
+	/*border-radius: 5px;*/
+	overflow: hidden;
+}
+.card .title{
+	display: inline-block;
+	width: 100%;
+	font-size: 20px;
+	padding: 10px 20px;
+	/*text-align: center;*/
+	color: #fff;
+	background-color: #607D8B;
+}
+.card .content{
+	display: inline-block;
+	width: 100%;
+	padding: 30px 20px;
+}
+.card .button,
+.card button{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+
+.card.double{
+	width: 400px;
+}
+.card.tripple{
+	width: 600px;
 }

@@ -48,7 +48,7 @@ socket.on("user-list-update", function(users){
       var userlist = $("#userlist").html("");
       for(var i = 0; i < users.length; i++)
       {
-            var userItem = $("<li class='list-group-item'>" + users[i] + "</li>");
+            var userItem = $("<li> <i class='glyphicon glyphicon-user'></i>" + users[i] + "</li>");
             userlist.prepend(userItem);
       }
 });
