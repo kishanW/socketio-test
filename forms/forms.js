@@ -36,7 +36,7 @@ io.on('connection', function(socket){
             var isExistingUser = users.indexOf(userName) !== -1;
             if(isExistingUser)
             {
-              return;
+                  return;
             }
 
             users[users.length] = userName;
