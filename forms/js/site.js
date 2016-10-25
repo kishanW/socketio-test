@@ -30,28 +30,20 @@ $(document).on("click", "#logoutButton", function(){
       FA.RemoveUser();
 });
 
-$(document).on("focus", "input[type=text]", function(){
+$(document).on("focus", "#content-area input[type=text]", function(){
       FA.FieldFocusInNotification($(this));
 });
 
-$(document).on("blur", "input[type=text]", function(){
+$(document).on("blur", "#content-area input[type=text]", function(){
       FA.FieldFocusOutNotification($(this));
 });
 
-$(document).on("keypress", "input[type=text]:not(#username)", function(){
+$(document).on("keypress change", "#content-area input[type=text]:not(#username)", function(){
       FA.FieldChangeNotification($(this));
 });
 
 /*    SOCKET EVENTS
 *******************************************************************************/
-socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-});
-
-socket.on('edit-notification', function(notification){
-      $('#messages').append($('<li>').text(notification.msg));
-});
-
 socket.on("user-list-update", function(users){
       var userlist = $("#userlist").html("");
       for(var i = 0; i < users.length; i++)
@@ -75,9 +67,11 @@ socket.on("field-notification", function(notification){
       }
       else if(field && notification.event === "change")
       {
+            console.log("new val: " + notification.data.fieldValue);
             //we need to fix this
             field.addClass("change");
             field.prop("readonly", "");
+            field.val(notification.data.fieldValue);
             var oldUser = fieldUsers.find("[data-user='" + notification.data.username + "']");
             oldUser.slideUp(function(){
                   $(this).remove();
@@ -172,6 +166,7 @@ FA.FieldFocusOutNotification = function(field){
 FA.FieldChangeNotification = function(field){
       socket.emit("field-change", {
             field: field.prop("name"),
+            fieldValue: field.val(),
             username: storage.userName
       });
 };

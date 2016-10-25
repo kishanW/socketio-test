@@ -89,7 +89,7 @@ io.on('connection', function(socket){
       });
 
       socket.on("field-change", function(data){
-            console.log(data.username  + " value-change at " + data.field);
+            console.log(data.username  + " value-change at " + data.field + "to: " + data.fieldValue);
             socket.broadcast.emit("field-notification", {
                   event: "change",
                   data: data
